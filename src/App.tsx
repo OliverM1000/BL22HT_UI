@@ -1,5 +1,6 @@
-import { Button, Grid, GridItem } from "@chakra-ui/react";
+import { Button, Divider, Grid, GridItem } from "@chakra-ui/react";
 import SampleFrameDataTable from "./components/SampleFrameDataTable";
+import SamplePlateDataTable from "./components/SamplePlateDataTable";
 
 let data = [
   {
@@ -175,9 +176,12 @@ function App() {
         Navigation
       </GridItem>
       <GridItem area={"main"}>
-        <SampleFrameDataTable
-          sampleFrameDataArr={data}
-          onClick={(tag) => console.log(tag)}
+        <SamplePlateDataTable
+          tag={data[0].tag}
+          samplePlateDescriptionL={data[0].samplePlateL.description}
+          samplePlateDescriptionR={data[0].samplePlateR.description}
+          samplePlateDataL={data[0].samplePlateL}
+          samplePlateDataR={data[0].samplePlateR}
         />
       </GridItem>
       <GridItem area={"aux"}>

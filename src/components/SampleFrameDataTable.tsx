@@ -7,7 +7,7 @@ import {
   Thead,
   Tr,
 } from "@chakra-ui/react";
-import { BsEye, BsCheckCircle, BsXCircle } from "react-icons/bs";
+import { BsCheckCircle, BsXCircle } from "react-icons/bs";
 
 interface SampleFrameData {
   tag: string;
@@ -52,7 +52,7 @@ function SampleFrameDataTable({ sampleFrameDataArr, onClick }: Props) {
       style={{
         borderColor: "rgba(70, 70, 70, 1)",
         borderStyle: "solid",
-        borderWidth: "2px",
+        borderWidth: "1px",
         borderRadius: "5px",
         padding: "8px",
         margin: "4px",
