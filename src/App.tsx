@@ -1,6 +1,7 @@
 import { Button, Divider, Grid, GridItem } from "@chakra-ui/react";
 import SampleFrameDataTable from "./components/SampleFrameDataTable";
 import SamplePlateDataTable from "./components/SamplePlateDataTable";
+import { useState } from "react";
 
 let data = [
   {
@@ -160,7 +161,13 @@ let data = [
   },
 ];
 
+function GetSampleFrameId(tag: string) {
+  return data.findIndex((e) => e.tag == tag);
+}
+
 function App() {
+  const [selectedSampleFrameId, setSelectedSampleFrameId] = useState(0);
+
   return (
     <Grid
       templateAreas={`"header header" "nav main" "nav aux"`}
@@ -177,17 +184,21 @@ function App() {
       </GridItem>
       <GridItem area={"main"}>
         <SamplePlateDataTable
-          tag={data[0].tag}
-          samplePlateDescriptionL={data[0].samplePlateL.description}
-          samplePlateDescriptionR={data[0].samplePlateR.description}
-          samplePlateDataL={data[0].samplePlateL}
-          samplePlateDataR={data[0].samplePlateR}
+          tag={data[selectedSampleFrameId].tag}
+          samplePlateDescriptionL={
+            data[selectedSampleFrameId].samplePlateL.description
+          }
+          samplePlateDescriptionR={
+            data[selectedSampleFrameId].samplePlateR.description
+          }
+          samplePlateDataL={data[selectedSampleFrameId].samplePlateL}
+          samplePlateDataR={data[selectedSampleFrameId].samplePlateR}
         />
       </GridItem>
       <GridItem area={"aux"}>
         <SampleFrameDataTable
           sampleFrameDataArr={data}
-          onClick={(tag) => console.log(tag)}
+          onClick={(tag) => setSelectedSampleFrameId(GetSampleFrameId(tag))}
         />
       </GridItem>
     </Grid>
