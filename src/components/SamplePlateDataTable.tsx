@@ -1,14 +1,3 @@
-import {
-  Table,
-  TableContainer,
-  Tbody,
-  Td,
-  Text,
-  Th,
-  Thead,
-  Tr,
-} from "@chakra-ui/react";
-
 interface SamplePlateData {
   samplePlateType: number;
   description: string;
@@ -51,127 +40,108 @@ function SamplePlateDataTable({
     <>
       <div
         style={{
-          borderColor: "rgba(70, 70, 70, 1)",
+          borderColor: "rgba(100, 100, 100, 1)",
           borderStyle: "solid",
           borderWidth: "1px",
           borderRadius: "5px",
           padding: "8px",
-          margin: "4px",
+          margin: "4px 20px 20px 4px",
         }}
       >
         <div style={{ margin: "0px 8px" }}>
-          <span>Sample Frame Tag: </span>
-          <span style={{ fontWeight: "bold" }}>{tag}</span>
+          <span style={{ fontWeight: "bold", fontSize: "18px" }}>
+            Sample Frame Tag: {tag}
+          </span>
         </div>
         <div
           style={{
-            borderColor: "rgba(70, 70, 70, 1)",
-            borderStyle: "solid",
-            borderWidth: "0px",
-            borderRadius: "5px",
             padding: "8px",
             margin: "8px 4px",
-            backgroundColor: "rgba(240, 240, 240, 1)",
           }}
         >
-          <Text as="b">Left Plate</Text>
-          <div>
-            <Text
-              bg="white"
-              borderRadius="4px"
-              padding="4px 4px"
-              margin="4px 0px"
-            >
-              {samplePlateDescriptionL != "" ? samplePlateDescriptionL : "n/a"}
-            </Text>
-          </div>
-          <TableContainer>
-            <Table className="table table-hover">
-              <Thead>
-                <Tr>
-                  <Th>Pos.</Th>
-                  <Th>Sample Description</Th>
-                  <Th>Element</Th>
-                  <Th>Edge</Th>
-                  <Th>Range</Th>
-                  <Th>Sweeps</Th>
-                  <Th>Data</Th>
-                  <Th>Date</Th>
-                </Tr>
-              </Thead>
-              <Tbody>
+          <span style={{ fontWeight: "bold", fontSize: "14px" }}>
+            Left Plate:{" "}
+          </span>
+          <span style={{ fontSize: "14px" }}>
+            {samplePlateDescriptionL != "" ? samplePlateDescriptionL : ""}
+          </span>
+          <div style={{ padding: "8px 0px" }}>
+            <table className="table table-hover">
+              <thead>
+                <tr>
+                  <th>Pos.</th>
+                  <th>Sample Description</th>
+                  <th>Element</th>
+                  <th>Edge</th>
+                  <th>Range</th>
+                  <th>Sweeps</th>
+                  <th>Data</th>
+                  <th>Date</th>
+                </tr>
+              </thead>
+              <tbody>
                 {samplePlateDataL.samples.map((sample, sampleId) =>
                   sample.scanSetup.map((scan, scanId) => (
-                    <Tr key={sampleId * sample.scanSetup.length + scanId}>
-                      <Td>{sample.position}</Td>
-                      <Td>{sample.description}</Td>
-                      <Td>{scan.element}</Td>
-                      <Td>{scan.edge}</Td>
-                      <Td>{scan.range}</Td>
-                      <Td>{scan.sweeps}</Td>
-                      <Td>n/a</Td>
-                      <Td>n/a</Td>
-                    </Tr>
+                    <tr key={sampleId * sample.scanSetup.length + scanId}>
+                      <td>{sample.position}</td>
+                      <td>{sample.description}</td>
+                      <td>{scan.element}</td>
+                      <td>{scan.edge}</td>
+                      <td>{scan.range}</td>
+                      <td>{scan.sweeps}</td>
+                      <td>n/a</td>
+                      <td>n/a</td>
+                    </tr>
                   ))
                 )}
-              </Tbody>
-            </Table>
-          </TableContainer>
+              </tbody>
+            </table>
+          </div>
         </div>
         <div
           style={{
-            borderColor: "rgba(70, 70, 70, 1)",
-            borderStyle: "solid",
-            borderWidth: "0px",
-            borderRadius: "5px",
             padding: "8px",
             margin: "8px 4px",
-            backgroundColor: "rgba(240, 240, 240, 1)",
           }}
         >
-          <span style={{ fontWeight: "bold" }}>Right Plate</span>
-          <div>
-            <Text
-              bg="white"
-              borderRadius="4px"
-              padding="4px 8px"
-              margin="4px 0px"
-            >
-              {samplePlateDescriptionR != "" ? samplePlateDescriptionR : "n/a"}
-            </Text>
-          </div>
-          <TableContainer>
-            <Table>
-              <Thead>
-                <Tr>
-                  <Th>Pos.</Th>
-                  <Th>Sample Description</Th>
-                  <Th>Element</Th>
-                  <Th>Edge</Th>
-                  <Th>Range</Th>
-                  <Th>Sweeps</Th>
-                  <Th>Data</Th>
-                  <Th>Date</Th>
-                </Tr>
-              </Thead>
-              <Tbody>
+          <span style={{ fontWeight: "bold", fontSize: "14px" }}>
+            Right Plate:{" "}
+          </span>
+          <span style={{ fontSize: "14px" }}>
+            {samplePlateDescriptionR != "" ? samplePlateDescriptionR : ""}
+          </span>
+          <div style={{ padding: "8px 0px" }}>
+            <table className="table table-hover">
+              <thead>
+                <tr>
+                  <th>Pos.</th>
+                  <th>Sample Description</th>
+                  <th>Element</th>
+                  <th>Edge</th>
+                  <th>Range</th>
+                  <th>Sweeps</th>
+                  <th>Data</th>
+                  <th>Date</th>
+                </tr>
+              </thead>
+              <tbody>
                 {samplePlateDataR.samples.map((sample, sampleId) =>
                   sample.scanSetup.map((scan, scanId) => (
-                    <Tr key={sampleId * sample.scanSetup.length + scanId}>
-                      <Td>{sample.position}</Td>
-                      <Td>{sample.description}</Td>
-                      <Td>{scan.element}</Td>
-                      <Td>{scan.edge}</Td>
-                      <Td>{scan.range}</Td>
-                      <Td>{scan.sweeps}</Td>
-                      <Td>n/a</Td>
-                      <Td>n/a</Td>
-                    </Tr>
+                    <tr key={sampleId * sample.scanSetup.length + scanId}>
+                      <td>{sample.position}</td>
+                      <td>{sample.description}</td>
+                      <td>{scan.element}</td>
+                      <td>{scan.edge}</td>
+                      <td>{scan.range}</td>
+                      <td>{scan.sweeps}</td>
+                      <td>n/a</td>
+                      <td>n/a</td>
+                    </tr>
                   ))
                 )}
-              </Tbody>
-            </Table>
-          </TableContainer>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </>

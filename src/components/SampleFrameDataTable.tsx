@@ -1,12 +1,3 @@
-import {
-  Table,
-  TableContainer,
-  Tbody,
-  Td,
-  Th,
-  Thead,
-  Tr,
-} from "@chakra-ui/react";
 import { BsCheckCircle, BsXCircle } from "react-icons/bs";
 
 interface SampleFrameData {
@@ -55,46 +46,46 @@ function SampleFrameDataTable({ sampleFrameDataArr, onClick }: Props) {
         borderWidth: "1px",
         borderRadius: "5px",
         padding: "8px",
-        margin: "4px",
+        margin: "4px 20px 4px 4px",
       }}
     >
-      <TableContainer>
-        <Table variant="simple">
-          <Thead>
-            <Tr>
-              <Th>Tag</Th>
-              <Th>Frame Description</Th>
-              <Th>Created</Th>
-              <Th>Received</Th>
-              <Th>Data</Th>
-            </Tr>
-          </Thead>
-          <Tbody>
+      <div>
+        <table className="table table-hover">
+          <thead>
+            <tr>
+              <th>Tag</th>
+              <th>Frame Description</th>
+              <th>Created</th>
+              <th>Received</th>
+              <th>Data</th>
+            </tr>
+          </thead>
+          <tbody>
             {sampleFrameDataArr.map((sampleFrameData) => (
-              <Tr
+              <tr
                 key={sampleFrameData.tag}
                 onClick={() => onClick(sampleFrameData.tag)}
               >
-                <Td>{sampleFrameData.tag}</Td>
-                <Td>{sampleFrameData.description}</Td>
-                <Td>
+                <td>{sampleFrameData.tag}</td>
+                <td>{sampleFrameData.description}</td>
+                <td>
                   {sampleFrameData.created ? sampleFrameData.created : "n/a"}
-                </Td>
-                <Td>
+                </td>
+                <td>
                   {sampleFrameData.received ? sampleFrameData.received : "n/a"}
-                </Td>
-                <Td>
+                </td>
+                <td>
                   {sampleFrameData.dataAvailable ? (
                     <BsCheckCircle size={20} color={"green"} />
                   ) : (
                     <BsXCircle size={20} color={"red"} />
                   )}
-                </Td>
-              </Tr>
+                </td>
+              </tr>
             ))}
-          </Tbody>
-        </Table>
-      </TableContainer>
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }
