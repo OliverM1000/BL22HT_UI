@@ -15,10 +15,12 @@ let data = [
       description: "left test plate",
       samples: [
         {
+          sampleId: 1,
           position: "A",
           description: "first sample",
           scanSetup: [
             {
+              scanId: 1,
               element: "Cu",
               edge: "K",
               range: "EXAFS",
@@ -29,6 +31,7 @@ let data = [
               sweeps: 4,
             },
             {
+              scanId: 2,
               element: "Zn",
               edge: "K",
               range: "EXAFS",
@@ -41,10 +44,12 @@ let data = [
           ],
         },
         {
+          sampleId: 2,
           position: "D",
           description: "second sample",
           scanSetup: [
             {
+              scanId: 3,
               element: "Fe",
               edge: "K",
               range: "XANES",
@@ -63,10 +68,12 @@ let data = [
       description: "right test plate",
       samples: [
         {
+          sampleId: 3,
           position: "C",
           description: "some sample",
           scanSetup: [
             {
+              scanId: 4,
               element: "Co",
               edge: "K",
               range: "EXAFS",
@@ -92,10 +99,12 @@ let data = [
       description: "Soils 2024",
       samples: [
         {
+          sampleId: 4,
           position: "A",
           description: "Soil 001",
           scanSetup: [
             {
+              scanId: 5,
               element: "Mn",
               edge: "K",
               range: "XANES",
@@ -108,10 +117,12 @@ let data = [
           ],
         },
         {
+          sampleId: 5,
           position: "B",
           description: "Soil 002",
           scanSetup: [
             {
+              scanId: 6,
               element: "Mn",
               edge: "K",
               range: "XANES",
@@ -124,10 +135,12 @@ let data = [
           ],
         },
         {
+          sampleId: 6,
           position: "C",
           description: "Soil 003",
           scanSetup: [
             {
+              scanId: 7,
               element: "Mn",
               edge: "K",
               range: "XANES",
@@ -140,10 +153,12 @@ let data = [
           ],
         },
         {
+          sampleId: 8,
           position: "D",
           description: "Soil 004",
           scanSetup: [
             {
+              scanId: 9,
               element: "Mn",
               edge: "K",
               range: "XANES",
@@ -183,6 +198,12 @@ function App() {
         Navigation
       </GridItem>
       <GridItem area={"main"}>
+        <SampleFrameDataTable
+          sampleFrameDataArr={data}
+          onClick={(tag) => setSelectedSampleFrameId(GetSampleFrameId(tag))}
+        />
+      </GridItem>
+      <GridItem area={"aux"}>
         <SamplePlateDataTable
           tag={data[selectedSampleFrameId].tag}
           samplePlateDescriptionL={
@@ -193,12 +214,7 @@ function App() {
           }
           samplePlateDataL={data[selectedSampleFrameId].samplePlateL}
           samplePlateDataR={data[selectedSampleFrameId].samplePlateR}
-        />
-      </GridItem>
-      <GridItem area={"aux"}>
-        <SampleFrameDataTable
-          sampleFrameDataArr={data}
-          onClick={(tag) => setSelectedSampleFrameId(GetSampleFrameId(tag))}
+          onClick={(id) => console.log(id)}
         />
       </GridItem>
     </Grid>
