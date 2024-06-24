@@ -52,8 +52,7 @@ function ShippingAddressForm({
         { ...data, user: userId },
         {
           headers: {
-            "x-auth-token":
-              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjVkZmUwZTBjMDg3YjAwZmIxZTMxN2QiLCJpc0FkbWluIjpmYWxzZSwiaWF0IjoxNzE4NTE4MTM5fQ.48UKAfv7WfRn5SjETjsA8yCpbhzgLUXHn1VJxCbg5OI",
+            "x-auth-token": localStorage.getItem("x-auth-token"),
           },
         }
       )
