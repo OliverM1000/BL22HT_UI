@@ -2,6 +2,9 @@ import { Button, Divider, Grid, GridItem } from "@chakra-ui/react";
 import SampleFrameDataTable from "./components/SampleFrameDataTable";
 import SamplePlateDataTable from "./components/SamplePlateDataTable";
 import { useState } from "react";
+import RegisterUserForm from "./forms/RegisterUserForm";
+import LoginUserForm from "./forms/LoginUserForm";
+import ShippingAddressForm from "./forms/ShippingAddressForm";
 
 let data = [
   {
@@ -198,24 +201,34 @@ function App() {
         Navigation
       </GridItem>
       <GridItem area={"main"}>
-        <SampleFrameDataTable
-          sampleFrameDataArr={data}
-          onClick={(tag) => setSelectedSampleFrameId(GetSampleFrameId(tag))}
-        />
+        {false && <LoginUserForm />}
+
+        {false && <RegisterUserForm />}
+
+        {false && <ShippingAddressForm />}
+
+        {false && (
+          <SampleFrameDataTable
+            sampleFrameDataArr={data}
+            onClick={(tag) => setSelectedSampleFrameId(GetSampleFrameId(tag))}
+          />
+        )}
       </GridItem>
       <GridItem area={"aux"}>
-        <SamplePlateDataTable
-          tag={data[selectedSampleFrameId].tag}
-          samplePlateDescriptionL={
-            data[selectedSampleFrameId].samplePlateL.description
-          }
-          samplePlateDescriptionR={
-            data[selectedSampleFrameId].samplePlateR.description
-          }
-          samplePlateDataL={data[selectedSampleFrameId].samplePlateL}
-          samplePlateDataR={data[selectedSampleFrameId].samplePlateR}
-          onClick={(id) => console.log(id)}
-        />
+        {false && (
+          <SamplePlateDataTable
+            tag={data[selectedSampleFrameId].tag}
+            samplePlateDescriptionL={
+              data[selectedSampleFrameId].samplePlateL.description
+            }
+            samplePlateDescriptionR={
+              data[selectedSampleFrameId].samplePlateR.description
+            }
+            samplePlateDataL={data[selectedSampleFrameId].samplePlateL}
+            samplePlateDataR={data[selectedSampleFrameId].samplePlateR}
+            onClick={(id) => console.log(id)}
+          />
+        )}
       </GridItem>
     </Grid>
   );

@@ -6,34 +6,36 @@ interface SampleFrameData {
   created: string;
   received: string;
   dataAvailable: boolean;
-  samplePlateL: SamplePlateData;
-  samplePlateR: SamplePlateData;
+  samplePlateL: PlateData;
+  samplePlateR: PlateData;
 }
-interface SamplePlateData {
-  samplePlateType: number;
-  description: string;
+interface PlateData {
+  _id: string;
+  sampleFrame: string;
+  type: number;
   samples: SampleData[];
 }
 
 interface SampleData {
-  position: string;
+  _id: string;
+  samplePlate: string;
   description: string;
-  scanSetup: SampleScanSetupData[];
+  position: string;
+  scanSetups: ScanData[];
 }
 
-interface SampleScanSetupData {
+interface ScanData {
+  _id: string;
+  sample: string;
   element: string;
   edge: string;
   range: string;
   setup: string;
-  optics: string;
-  beamWidth: number;
-  detune: number;
   sweeps: number;
 }
 
 interface Props {
-  sampleFrameDataArr: SampleFrameData[];
+  sampleFrameDataArr: SampleFrameData[] | null;
   onClick: (tag: string) => void;
 }
 
@@ -61,28 +63,31 @@ function SampleFrameDataTable({ sampleFrameDataArr, onClick }: Props) {
             </tr>
           </thead>
           <tbody>
-            {sampleFrameDataArr.map((sampleFrameData) => (
-              <tr
-                key={sampleFrameData.tag}
-                onClick={() => onClick(sampleFrameData.tag)}
-              >
-                <td>{sampleFrameData.tag}</td>
-                <td>{sampleFrameData.description}</td>
-                <td>
-                  {sampleFrameData.created ? sampleFrameData.created : "n/a"}
-                </td>
-                <td>
-                  {sampleFrameData.received ? sampleFrameData.received : "n/a"}
-                </td>
-                <td>
-                  {sampleFrameData.dataAvailable ? (
-                    <BsCheckCircle size={20} color={"green"} />
-                  ) : (
-                    <BsXCircle size={20} color={"red"} />
-                  )}
-                </td>
-              </tr>
-            ))}
+            {sampleFrameDataArr &&
+              sampleFrameDataArr.map((sampleFrameData) => (
+                <tr
+                  key={sampleFrameData.tag}
+                  onClick={() => onClick(sampleFrameData.tag)}
+                >
+                  <td>{sampleFrameData.tag}</td>
+                  <td>{sampleFrameData.description}</td>
+                  <td>
+                    {sampleFrameData.created ? sampleFrameData.created : "n/a"}
+                  </td>
+                  <td>
+                    {sampleFrameData.received
+                      ? sampleFrameData.received
+                      : "n/a"}
+                  </td>
+                  <td>
+                    {sampleFrameData.dataAvailable ? (
+                      <BsCheckCircle size={20} color={"green"} />
+                    ) : (
+                      <BsXCircle size={20} color={"red"} />
+                    )}
+                  </td>
+                </tr>
+              ))}
           </tbody>
         </table>
       </div>

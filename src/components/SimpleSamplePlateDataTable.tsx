@@ -1,38 +1,47 @@
-interface SamplePlateData {
-  samplePlateType: number;
-  description: string;
+import { FaRegTrashCan } from "react-icons/fa6";
+
+interface PlateData {
+  _id: string;
+  sampleFrame: string;
+  type: number;
   samples: SampleData[];
 }
 
 interface SampleData {
-  sampleId: number;
-  position: string;
+  _id: string;
+  samplePlate: string;
   description: string;
-  scanSetup: SampleScanSetupData[];
+  position: string;
+  scanSetups: ScanData[];
 }
 
-interface SampleScanSetupData {
-  scanId: number;
+interface ScanData {
+  _id: string;
+  sample: string;
   element: string;
   edge: string;
   range: string;
   setup: string;
-  optics: string;
-  beamWidth: number;
-  detune: number;
   sweeps: number;
 }
 
 interface Props {
+  title: string;
   description: string;
-  data: SamplePlateData;
-  onClick: (id: number) => void;
+  data: PlateData | null;
+  //onClick: (sampleId: string) => void;
+  onDelete: (scanId: string) => void;
 }
 
-function SimpleSamplePlateDataTable({ description, data, onClick }: Props) {
+function SimpleSamplePlateDataTable({
+  title,
+  description,
+  data,
+  onDelete,
+}: Props) {
   return (
     <div style={{ margin: "0px 4px" }}>
-      <span style={{ fontWeight: "bold", fontSize: "14px" }}>Left Plate: </span>
+      <span style={{ fontWeight: "bold", fontSize: "14px" }}>{title}: </span>
       <span style={{ fontSize: "14px" }}>
         {description != "" ? description : ""}
       </span>
@@ -46,28 +55,37 @@ function SimpleSamplePlateDataTable({ description, data, onClick }: Props) {
               <th>Edge</th>
               <th>Range</th>
               <th>Sweeps</th>
-              <th>Data</th>
-              <th>Date</th>
+              <th>Delete</th>
             </tr>
           </thead>
           <tbody>
-            {data.samples.map((sample, sampleId) =>
-              sample.scanSetup.map((scan, scanId) => (
-                <tr
-                  key={sampleId * sample.scanSetup.length + scanId}
-                  onClick={() => onClick(sample.sampleId)}
-                >
-                  <td>{sample.position}</td>
-                  <td>{sample.description}</td>
-                  <td>{scan.element}</td>
-                  <td>{scan.edge}</td>
-                  <td>{scan.range}</td>
-                  <td>{scan.sweeps}</td>
-                  <td>n/a</td>
-                  <td>n/a</td>
-                </tr>
-              ))
-            )}
+            {data &&
+              data.samples &&
+              data.samples.map(
+                (sample, sampleId) =>
+                  sample.scanSetups &&
+                  sample.scanSetups.map((scan, scanId) => (
+                    <tr
+                      key={sampleId * sample.scanSetups.length + scanId}
+                      //onClick={() => onClick(sample._id)}
+                    >
+                      <td>{sample.position}</td>
+                      <td>{sample.description}</td>
+                      <td>{scan.element}</td>
+                      <td>{scan.edge}</td>
+                      <td>{scan.range}</td>
+                      <td>{scan.sweeps}</td>
+                      <td>
+                        <div
+                          style={{ cursor: "pointer" }}
+                          onClick={() => onDelete(scan._id)}
+                        >
+                          <FaRegTrashCan size={20} color="#dc3545" />
+                        </div>
+                      </td>
+                    </tr>
+                  ))
+              )}
           </tbody>
         </table>
       </div>

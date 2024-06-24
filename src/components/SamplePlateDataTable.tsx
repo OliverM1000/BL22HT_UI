@@ -1,27 +1,27 @@
 import SimpleSamplePlateDataTable from "./SimpleSamplePlateDataTable";
 
-interface SamplePlateData {
-  samplePlateType: number;
-  description: string;
+interface PlateData {
+  _id: string;
+  sampleFrame: string;
+  type: number;
   samples: SampleData[];
 }
 
 interface SampleData {
-  sampleId: number;
-  position: string;
+  _id: string;
+  samplePlate: string;
   description: string;
-  scanSetup: SampleScanSetupData[];
+  position: string;
+  scanSetups: ScanData[];
 }
 
-interface SampleScanSetupData {
-  scanId: number;
+interface ScanData {
+  _id: string;
+  sample: string;
   element: string;
   edge: string;
   range: string;
   setup: string;
-  optics: string;
-  beamWidth: number;
-  detune: number;
   sweeps: number;
 }
 
@@ -29,9 +29,9 @@ interface Props {
   tag: string;
   samplePlateDescriptionL: string;
   samplePlateDescriptionR: string;
-  samplePlateDataL: SamplePlateData;
-  samplePlateDataR: SamplePlateData;
-  onClick: (id: number) => void;
+  samplePlateDataL: PlateData | null;
+  samplePlateDataR: PlateData | null;
+  onClick: (scanId: string) => void;
 }
 
 function SamplePlateDataTable({
@@ -59,14 +59,20 @@ function SamplePlateDataTable({
         </span>
       </div>
       <SimpleSamplePlateDataTable
+        title="Left"
         description={samplePlateDescriptionL}
         data={samplePlateDataL}
-        onClick={onClick}
+        onDelete={(scanId) => {
+          console.log(scanId);
+        }}
       />
       <SimpleSamplePlateDataTable
+        title="Right"
         description={samplePlateDescriptionR}
         data={samplePlateDataR}
-        onClick={onClick}
+        onDelete={(scanId) => {
+          console.log(scanId);
+        }}
       />
     </div>
   );
