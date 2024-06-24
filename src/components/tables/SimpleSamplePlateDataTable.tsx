@@ -1,29 +1,5 @@
 import { FaRegTrashCan } from "react-icons/fa6";
-
-interface PlateData {
-  _id: string;
-  sampleFrame: string;
-  type: number;
-  samples: SampleData[];
-}
-
-interface SampleData {
-  _id: string;
-  samplePlate: string;
-  description: string;
-  position: string;
-  scanSetups: ScanData[];
-}
-
-interface ScanData {
-  _id: string;
-  sample: string;
-  element: string;
-  edge: string;
-  range: string;
-  setup: string;
-  sweeps: number;
-}
+import { PlateData } from "../../interfaces/FrameDataInterfaces";
 
 interface Props {
   title: string;

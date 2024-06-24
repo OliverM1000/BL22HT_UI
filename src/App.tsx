@@ -1,11 +1,12 @@
 import { Button, Divider, Grid, GridItem } from "@chakra-ui/react";
-import SampleFrameDataTable from "./components/SampleFrameDataTable";
-import SamplePlateDataTable from "./components/SamplePlateDataTable";
+import SampleFrameDataTable from "./components/tables/SampleFrameDataTable";
+import SamplePlateDataTable from "./components/tables/SamplePlateDataTable";
 import { useState } from "react";
 import RegisterUserForm from "./forms/RegisterUserForm";
 import LoginUserForm from "./forms/LoginUserForm";
 import ShippingAddressForm from "./forms/ShippingAddressForm";
 
+/*
 let data = [
   {
     tag: "AAA-BBB",
@@ -209,7 +210,7 @@ function App() {
 
         {false && (
           <SampleFrameDataTable
-            sampleFrameDataArr={data}
+            frameDataArr={data}
             onClick={(tag) => setSelectedSampleFrameId(GetSampleFrameId(tag))}
           />
         )}
@@ -235,3 +236,4 @@ function App() {
 }
 
 export default App;
+*/

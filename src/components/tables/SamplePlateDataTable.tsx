@@ -1,29 +1,5 @@
+import { PlateData } from "../../interfaces/FrameDataInterfaces";
 import SimpleSamplePlateDataTable from "./SimpleSamplePlateDataTable";
-
-interface PlateData {
-  _id: string;
-  sampleFrame: string;
-  type: number;
-  samples: SampleData[];
-}
-
-interface SampleData {
-  _id: string;
-  samplePlate: string;
-  description: string;
-  position: string;
-  scanSetups: ScanData[];
-}
-
-interface ScanData {
-  _id: string;
-  sample: string;
-  element: string;
-  edge: string;
-  range: string;
-  setup: string;
-  sweeps: number;
-}
 
 interface Props {
   tag: string;

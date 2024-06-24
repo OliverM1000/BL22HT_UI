@@ -3,22 +3,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaPenToSquare, FaArrowRightFromBracket } from "react-icons/fa6";
 import ShippingAddressForm from "../forms/ShippingAddressForm";
-
-interface Address {
-  affiliation: string;
-  street: string;
-  city: string;
-  zip: number;
-  state: string;
-  country: string;
-}
-
-interface User {
-  _id: string;
-  first_name: string;
-  last_name: string;
-  email: string;
-}
+import { Address, User } from "../interfaces/AccountInterfaces";
 
 function AccountPage() {
   const navigate = useNavigate();

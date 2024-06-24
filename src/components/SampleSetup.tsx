@@ -63,7 +63,10 @@ function SampleSetup({ slot, onSubmit, onDelete }: Props) {
         <div style={{ display: "flex" }}>
           <h4 className="mb-2">Sample</h4>
           <div style={{ marginLeft: "auto" }}>
-            <div style={{ cursor: "pointer" }} onClick={() => onDelete("FOO")}>
+            <div
+              style={{ cursor: "pointer" }}
+              onClick={() => onDelete(slot.sampleId)}
+            >
               <FaRegTrashCan size={20} color="#dc3545" />
             </div>
           </div>

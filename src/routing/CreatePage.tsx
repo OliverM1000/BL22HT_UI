@@ -1,6 +1,6 @@
-import SamplePlate8Slot from "../components/SamplePlate8Slot";
-import SamplePlate8Circle from "../components/SamplePlate8Circle";
-import SamplePlateEmpty from "../components/SamplePlateEmpty";
+import SamplePlate8Slot from "../samplePlates/SamplePlate8Slot";
+import SamplePlate8Circle from "../samplePlates/SamplePlate8Circle";
+import SamplePlateEmpty from "../samplePlates/SamplePlateEmpty";
 import SampleFrame from "../components/SampleFrame";
 import { useEffect, useState } from "react";
 import SampleFrameSetup, {
@@ -10,42 +10,8 @@ import SampleSetup, { SampleSetupData } from "../components/SampleSetup";
 import ScanSetup, { ScanSetupFormData } from "../components/ScanSetup";
 import apiClient from "../services/api-client";
 import Overlay from "../components/Overlay";
-import SimpleSamplePlateDataTable from "../components/SimpleSamplePlateDataTable";
-
-interface FrameData {
-  _id: string;
-  tag: string;
-  user: string;
-  committed: boolean;
-  description: string;
-  samplePlateL: PlateData;
-  samplePlateR: PlateData;
-}
-
-interface PlateData {
-  _id: string;
-  sampleFrame: string;
-  type: number;
-  samples: [SampleData];
-}
-
-interface SampleData {
-  _id: string;
-  samplePlate: string;
-  description: string;
-  position: string;
-  scanSetups: [ScanData];
-}
-
-interface ScanData {
-  _id: string;
-  sample: string;
-  element: string;
-  edge: string;
-  range: string;
-  setup: string;
-  sweeps: number;
-}
+import SimpleSamplePlateDataTable from "../components/tables/SimpleSamplePlateDataTable";
+import { FrameData } from "../interfaces/FrameDataInterfaces";
 
 interface SelectedSample {
   arrayIndex: number;
@@ -54,13 +20,13 @@ interface SelectedSample {
   samplePosition: string;
   sampleDescription: string;
 }
-interface SamplePlateState {
+interface SampleStates {
   left: number[];
   right: number[];
 }
 
-interface SamplePlate {
-  states: SamplePlateState;
+interface SamplePlateUiState {
+  states: SampleStates;
   selected: SelectedSample;
 }
 
@@ -92,6 +58,9 @@ function CreatePage() {
     user: "",
     committed: false,
     description: "",
+    created: "",
+    received: "",
+    dataAvailable: false,
     samplePlateL: {
       _id: "",
       sampleFrame: "",
@@ -142,7 +111,7 @@ function CreatePage() {
     },
   });
 
-  const [uiStates, setUiStates] = useState<SamplePlate>({
+  const [uiStates, setUiStates] = useState<SamplePlateUiState>({
     states: {
       left: [0, 0, 0, 0, 0, 0, 0, 0],
       right: [0, 0, 0, 0, 0, 0, 0, 0],
@@ -404,6 +373,7 @@ function CreatePage() {
       .then((res) => {
         console.log(res.data);
         setUpdate(!update);
+        setShowScanSetup(false);
       })
       .catch((error) => console.log("ERROR", error.response.data))
       .finally(() => console.log("DeleteSample Done"));
@@ -549,7 +519,7 @@ function CreatePage() {
                 <SampleSetup
                   slot={uiStates.selected}
                   onSubmit={AddSample}
-                  onDelete={(id) => console.log(id)}
+                  onDelete={DeleteSample}
                 />
               </div>
 
