@@ -6,11 +6,17 @@ import apiClient from "../services/api-client";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
+const commonTlds = ["com", "org", "net", "edu", "gov"];
+
 const schema = Joi.object({
   first_name: Joi.string().min(3).max(20).required().label("First Name"),
   last_name: Joi.string().min(3).max(20).required().label("Second Name"),
   email: Joi.string()
-    .email({ tlds: { allow: false } })
+    .email({
+      minDomainSegments: 2,
+      maxDomainSegments: 3,
+      tlds: { allow: commonTlds },
+    })
     .required()
     .label("Email"),
   password: Joi.string().min(8).max(20).required().label("Password"),
@@ -40,10 +46,12 @@ function RegisterUserForm() {
   } = useForm<FormData>({ resolver: joiResolver(schema) });
 
   const onSubmit = async (data: FieldValues) => {
-    console.log(data);
     apiClient
       .post("/users", _.omit(data, "confirm_password"))
-      .then(() => navigate("/main"))
+      .then((res) => {
+        //localStorage.setItem("x-auth-token", res.data);
+        navigate("/");
+      })
       .catch((error) => setErrorMessage(error.response.data));
   };
 

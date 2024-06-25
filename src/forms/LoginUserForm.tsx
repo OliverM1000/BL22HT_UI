@@ -5,9 +5,15 @@ import { useNavigate } from "react-router-dom";
 import apiClient from "../services/api-client";
 import { useState } from "react";
 
+const commonTlds = ["com", "org", "net", "edu", "gov"];
+
 const schema = Joi.object({
   email: Joi.string()
-    .email({ tlds: { allow: false } })
+    .email({
+      minDomainSegments: 2,
+      maxDomainSegments: 3,
+      tlds: { allow: commonTlds },
+    })
     .required()
     .label("Email"),
   password: Joi.string().min(8).max(20).required().label("Password"),
