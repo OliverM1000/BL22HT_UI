@@ -5,14 +5,16 @@ interface Props {
   title: string;
   description: string;
   data: PlateData | null;
+  showDelete: boolean;
   //onClick: (sampleId: string) => void;
-  onDelete: (scanId: string) => void;
+  onDelete?: (scanId: string) => void;
 }
 
 function SimpleSamplePlateDataTable({
   title,
   description,
   data,
+  showDelete,
   onDelete,
 }: Props) {
   return (
@@ -31,7 +33,7 @@ function SimpleSamplePlateDataTable({
               <th>Edge</th>
               <th>Range</th>
               <th>Sweeps</th>
-              <th>Delete</th>
+              {showDelete && <th>Delete</th>}
             </tr>
           </thead>
           <tbody>
@@ -51,14 +53,18 @@ function SimpleSamplePlateDataTable({
                       <td>{scan.edge}</td>
                       <td>{scan.range}</td>
                       <td>{scan.sweeps}</td>
-                      <td>
-                        <div
-                          style={{ cursor: "pointer" }}
-                          onClick={() => onDelete(scan._id)}
-                        >
-                          <FaRegTrashCan size={20} color="#dc3545" />
-                        </div>
-                      </td>
+                      {showDelete && (
+                        <td>
+                          <div
+                            style={{ cursor: "pointer" }}
+                            onClick={() =>
+                              onDelete ? onDelete(scan._id) : null
+                            }
+                          >
+                            <FaRegTrashCan size={20} color="#dc3545" />
+                          </div>
+                        </td>
+                      )}
                     </tr>
                   ))
               )}

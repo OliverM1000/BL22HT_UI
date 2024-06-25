@@ -576,6 +576,7 @@ function CreatePage() {
             data={frameData.samplePlateL}
             title="Left Plate"
             description={frameData.description}
+            showDelete={true}
             onDelete={(id) => {
               DeleteScan(id);
             }}
@@ -584,6 +585,7 @@ function CreatePage() {
             data={frameData.samplePlateR}
             title="Right Plate"
             description={frameData.description}
+            showDelete={true}
             onDelete={(id) => {
               DeleteScan(id);
             }}

@@ -38,17 +38,13 @@ function SamplePlateDataTable({
         title="Left"
         description={samplePlateDescriptionL}
         data={samplePlateDataL}
-        onDelete={(scanId) => {
-          console.log(scanId);
-        }}
+        showDelete={false}
       />
       <SimpleSamplePlateDataTable
         title="Right"
         description={samplePlateDescriptionR}
         data={samplePlateDataR}
-        onDelete={(scanId) => {
-          console.log(scanId);
-        }}
+        showDelete={false}
       />
     </div>
   );
