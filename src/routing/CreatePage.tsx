@@ -523,7 +523,7 @@ function CreatePage() {
                 />
               </div>
 
-              {showScanSetup && (
+              <>
                 <div
                   style={{
                     borderColor: "rgba(70, 70, 70, 1)",
@@ -532,11 +532,13 @@ function CreatePage() {
                     borderRadius: "5px",
                     padding: "8px",
                     marginBottom: "8px",
+                    position: "relative",
                   }}
                 >
+                  {!showScanSetup && <Overlay />}
                   <ScanSetup onSubmit={AddScan} />
                 </div>
-              )}
+              </>
             </>
           )}
 
