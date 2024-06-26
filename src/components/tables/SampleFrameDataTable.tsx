@@ -35,8 +35,16 @@ function SampleFrameDataTable({ frameDataArr, onClick }: Props) {
                 <tr key={frameData.tag} onClick={() => onClick(frameData.tag)}>
                   <td>{frameData.tag}</td>
                   <td>{frameData.description}</td>
-                  <td>{frameData.created ? frameData.created : "n/a"}</td>
-                  <td>{frameData.received ? frameData.received : "n/a"}</td>
+                  <td>
+                    {frameData.created
+                      ? frameData.created.split("T")[0]
+                      : "n/a"}
+                  </td>
+                  <td>
+                    {frameData.received
+                      ? frameData.received.split("T")[0]
+                      : "n/a"}
+                  </td>
                   <td>
                     {frameData.dataAvailable ? (
                       <BsCheckCircle size={20} color={"green"} />
