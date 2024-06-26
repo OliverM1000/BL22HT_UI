@@ -517,6 +517,7 @@ function CreatePage() {
                 }}
               >
                 <SampleSetup
+                  disableEdit={showScanSetup}
                   slot={uiStates.selected}
                   onSubmit={AddSample}
                   onDelete={DeleteSample}

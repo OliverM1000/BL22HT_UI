@@ -32,11 +32,12 @@ interface slot {
 
 interface Props {
   slot: slot;
+  disableEdit: boolean;
   onSubmit: (data: SampleSetupData) => void;
   onDelete: (id: string) => void;
 }
 
-function SampleSetup({ slot, onSubmit, onDelete }: Props) {
+function SampleSetup({ slot, disableEdit, onSubmit, onDelete }: Props) {
   const [sampleDescription, setSampleDescription] = useState("");
 
   const {
@@ -98,6 +99,7 @@ function SampleSetup({ slot, onSubmit, onDelete }: Props) {
                 <div className="col-9">
                   <textarea
                     {...field}
+                    disabled={disableEdit}
                     className="form-control"
                     rows={3}
                     name="description"
@@ -118,7 +120,11 @@ function SampleSetup({ slot, onSubmit, onDelete }: Props) {
 
         <div style={{ display: "flex" }} className="mt-2">
           <div style={{ marginLeft: "auto" }}>
-            <button type="submit" className="btn btn-primary">
+            <button
+              type="submit"
+              className="btn btn-primary"
+              disabled={disableEdit}
+            >
               Add
             </button>
           </div>
