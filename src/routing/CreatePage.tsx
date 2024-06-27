@@ -360,6 +360,8 @@ function CreatePage() {
       .finally(() => {
         console.log("AddScan Complete");
       });
+
+    setShowScanSetup(false);
   };
 
   const DeleteSample = (id: string) => {
