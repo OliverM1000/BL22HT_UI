@@ -1,3 +1,4 @@
+// @ts-ignore
 import CanvasJSReact from "@canvasjs/react-charts";
 import { ChartOptions, DataPoint } from "../interfaces/XasDataInterfaces";
 import Overlay from "./Overlay";
