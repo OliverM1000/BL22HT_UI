@@ -6,7 +6,7 @@ interface Props {
   description: string;
   data: PlateData | null;
   showDelete: boolean;
-  //onClick: (sampleId: string) => void;
+  onClick: (sampleId: string, scanId: string) => void;
   onDelete?: (scanId: string) => void;
 }
 
@@ -16,6 +16,7 @@ function SimpleSamplePlateDataTable({
   data,
   showDelete,
   onDelete,
+  onClick,
 }: Props) {
   return (
     <div style={{ margin: "0px 4px" }}>
@@ -45,7 +46,7 @@ function SimpleSamplePlateDataTable({
                   sample.scanSetups.map((scan, scanId) => (
                     <tr
                       key={sampleId * sample.scanSetups.length + scanId}
-                      //onClick={() => onClick(sample._id)}
+                      onClick={() => onClick(sample._id, scan._id)}
                     >
                       <td>{sample.position}</td>
                       <td>{sample.description}</td>

@@ -7,7 +7,7 @@ interface Props {
   samplePlateDescriptionR: string;
   samplePlateDataL: PlateData | null;
   samplePlateDataR: PlateData | null;
-  onClick: (scanId: string) => void;
+  onClick: (sampleId: string, scanId: string) => void;
 }
 
 function SamplePlateDataTable({
@@ -39,12 +39,14 @@ function SamplePlateDataTable({
         description={samplePlateDescriptionL}
         data={samplePlateDataL}
         showDelete={false}
+        onClick={onClick}
       />
       <SimpleSamplePlateDataTable
         title="Right"
         description={samplePlateDescriptionR}
         data={samplePlateDataR}
         showDelete={false}
+        onClick={onClick}
       />
     </div>
   );

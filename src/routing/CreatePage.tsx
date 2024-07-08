@@ -585,6 +585,7 @@ function CreatePage() {
             onDelete={(id) => {
               DeleteScan(id);
             }}
+            onClick={() => {}}
           />
           <SimpleSamplePlateDataTable
             data={frameData.samplePlateR}
@@ -594,6 +595,7 @@ function CreatePage() {
             onDelete={(id) => {
               DeleteScan(id);
             }}
+            onClick={() => {}}
           />
         </div>
       </div>

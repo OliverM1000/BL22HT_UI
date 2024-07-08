@@ -35,10 +35,11 @@ function Samples() {
 
     if (typeof id != "undefined" && id > -1) idx = id;
 
-    //console.log(id, idx, arr[idx]);
-
-    if (left) return idx > -1 ? arr[idx].samplePlateL : null;
-    else return idx > -1 ? arr[idx].samplePlateR : null;
+    if (left) {
+      return idx > -1 ? arr[idx].samplePlateL : null;
+    } else {
+      return idx > -1 ? arr[idx].samplePlateR : null;
+    }
   };
 
   return (
