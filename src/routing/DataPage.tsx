@@ -307,19 +307,19 @@ function DataPage() {
 
       switch (numerator) {
         case 1:
-          a = xasData.adc1[i];
+          a = xasData.adc1[i] + xasData.adcOffset1;
           break;
 
         case 2:
-          a = xasData.adc2[i];
+          a = xasData.adc2[i] + xasData.adcOffset2;
           break;
 
         case 3:
-          a = xasData.adc3[i];
+          a = xasData.adc3[i] + xasData.adcOffset3;
           break;
 
         case 4:
-          a = xasData.adc4[i];
+          a = xasData.adc4[i] + xasData.adcOffset4;
           break;
 
         case 5:
@@ -329,19 +329,19 @@ function DataPage() {
 
       switch (denominator) {
         case 1:
-          b = xasData.adc1[i];
+          b = xasData.adc1[i] + xasData.adcOffset1;
           break;
 
         case 2:
-          b = xasData.adc2[i];
+          b = xasData.adc2[i] + xasData.adcOffset2;
           break;
 
         case 3:
-          b = xasData.adc3[i];
+          b = xasData.adc3[i] + xasData.adcOffset3;
           break;
 
         case 4:
-          b = xasData.adc4[i];
+          b = xasData.adc4[i] + xasData.adcOffset4;
           break;
 
         case 5:
