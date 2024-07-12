@@ -34,7 +34,7 @@ function XasPlotSweep({ min, max, current, onChange, onReset }: Props) {
           <FaChevronLeft size={15} />
         </button>
         <button type="button" className="btn btn-light" onClick={onReset}>
-          {current}
+          {current}/{max}
         </button>
         <button
           type="button"

@@ -383,7 +383,7 @@ function DataPage() {
         </div>
         <div className="col-10">
           <XasPlot
-            title={xasData ? `${xasData?.sample.description}-${sweep}` : ""}
+            title={xasData ? `${xasData?.sample.description} #${sweep}` : ""}
             yTitle={yTitle}
             options={defaultChartOptions}
             data={xasSampleData}

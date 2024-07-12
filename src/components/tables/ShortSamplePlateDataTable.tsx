@@ -32,7 +32,6 @@ function ShortSamplePlateDataTable({
             <th>Pos.</th>
             <th>Sample Description</th>
             <th>Scan</th>
-            <th>Sweeps</th>
           </tr>
         </thead>
         <tbody>
@@ -56,7 +55,6 @@ function ShortSamplePlateDataTable({
                     <td>
                       {scan.element}-{scan.edge} {scan.range}
                     </td>
-                    <td>{scan.sweeps}</td>
                   </tr>
                 ))
             )}
@@ -81,7 +79,6 @@ function ShortSamplePlateDataTable({
                     <td>
                       {scan.element}-{scan.edge} {scan.range}
                     </td>
-                    <td>{scan.sweeps}</td>
                   </tr>
                 ))
             )}
