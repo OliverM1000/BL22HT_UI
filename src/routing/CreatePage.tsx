@@ -12,6 +12,7 @@ import apiClient from "../services/api-client";
 import Overlay from "../components/Overlay";
 import SimpleSamplePlateDataTable from "../components/tables/SimpleSamplePlateDataTable";
 import { FrameData } from "../interfaces/FrameDataInterfaces";
+import SamplePlate6CircleGas from "../samplePlates/SamplePlate6CircleGas";
 
 interface SelectedSample {
   arrayIndex: number;
@@ -41,6 +42,9 @@ function SamplePlateSwitch(
 
     case 2:
       return <SamplePlate8Circle states={states} onClick={onClick} />;
+
+    case 3:
+      return <SamplePlate6CircleGas states={states} onClick={onClick} />;
 
     default:
       return <SamplePlateEmpty />;
@@ -194,6 +198,7 @@ function CreatePage() {
     let states = {
       left: [0, 0, 0, 0, 0, 0, 0, 0],
       right: [0, 0, 0, 0, 0, 0, 0, 0],
+      center: [0, 0, 0, 0, 0, 0],
     };
 
     let description = "";
@@ -283,6 +288,8 @@ function CreatePage() {
   };
 
   const AddFrame = (data: SampleFrameFormData) => {
+    console.log(data);
+
     apiClient
       .post(
         "/create/frame",

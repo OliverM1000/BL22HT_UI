@@ -35,14 +35,37 @@ function SampleFrameSetup({ tag, data, setTypeL, setTypeR, onSubmit }: Props) {
   const {
     control,
     handleSubmit,
+    watch,
+    setValue,
     formState: { errors },
   } = useForm<SampleFrameFormData>({ resolver: joiResolver(schema) });
+
+  const samplePlateTypeL = watch("samplePlateTypeL");
+  const [rightOptions, setRightOptions] = useState([
+    { value: "0", label: "empty" },
+    { value: "1", label: "8-Slot" },
+    { value: "2", label: "8-Circle" },
+  ]);
 
   useEffect(() => {
     setPlateTypeL(data.samplePlateTypeL);
     setPlateTypeR(data.samplePlateTypeR);
     setFrameDescription(data.description);
   }, [data]);
+
+  useEffect(() => {
+    if (samplePlateTypeL > 2) {
+      setRightOptions([{ value: "0", label: "empty" }]);
+      setValue("samplePlateTypeR", 0);
+      setTypeR(0);
+    } else {
+      setRightOptions([
+        { value: "0", label: "empty" },
+        { value: "1", label: "8-Slot" },
+        { value: "2", label: "8-Circle" },
+      ]);
+    }
+  }, [samplePlateTypeL]);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -85,6 +108,7 @@ function SampleFrameSetup({ tag, data, setTypeL, setTypeR, onSubmit }: Props) {
                     <option value="0">empty</option>
                     <option value="1">8-Slot</option>
                     <option value="2">8-Circle</option>
+                    <option value="3">6-Circle-Air</option>
                   </select>
                 </div>
               </div>
@@ -112,9 +136,11 @@ function SampleFrameSetup({ tag, data, setTypeL, setTypeR, onSubmit }: Props) {
                       setPlateTypeR(parseInt(o.target.value));
                     }}
                   >
-                    <option value="0">empty</option>
-                    <option value="1">8-Slot</option>
-                    <option value="2">8-Circle</option>
+                    {rightOptions.map((option) => (
+                      <option key={option.value} value={option.value}>
+                        {option.label}
+                      </option>
+                    ))}
                   </select>
                 </div>
               </div>

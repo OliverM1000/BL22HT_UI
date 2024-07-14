@@ -11,16 +11,18 @@ function SamplePlateEmpty() {
           margin: "4px",
         }}
       >
-        <img
-          src={samplePlateEmpty}
-          style={{
-            position: "absolute",
-            left: "0px",
-            top: "0px",
-            maxWidth: "100%",
-            zIndex: "2",
-          }}
-        />
+        {false && (
+          <img
+            src={samplePlateEmpty}
+            style={{
+              position: "absolute",
+              left: "0px",
+              top: "0px",
+              maxWidth: "100%",
+              zIndex: "2",
+            }}
+          />
+        )}
       </div>
     </>
   );

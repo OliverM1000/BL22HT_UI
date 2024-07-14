@@ -1,21 +1,19 @@
 import { useState } from "react";
-import samplePlate8 from "../assets/8-Circle.png";
+import samplePlate6 from "../assets/6-Circle-Gas.png";
 
 interface Props {
   states: number[];
   onClick: (id: number, position: string) => void;
 }
 
-function SamplePlate8Circle({ states, onClick }: Props) {
+function SamplePlate6CircleGas({ states, onClick }: Props) {
   const defaultSlots = [
-    { id: 0, tag: "A", top: "41px", y: "12px" },
-    { id: 1, tag: "B", top: "41px", y: "100px" },
-    { id: 2, tag: "C", top: "80px", y: "56px" },
-    { id: 3, tag: "D", top: "119px", y: "14px" },
-    { id: 4, tag: "E", top: "119px", y: "100px" },
-    { id: 5, tag: "F", top: "158px", y: "56px" },
-    { id: 6, tag: "G", top: "197px", y: "14px" },
-    { id: 7, tag: "H", top: "197px", y: "100px" },
+    { id: 0, tag: "A", top: "193px", y: "161px" },
+    { id: 1, tag: "B", top: "153px", y: "217px" },
+    { id: 2, tag: "C", top: "94px", y: "207px" },
+    { id: 3, tag: "D", top: "133px", y: "161px" },
+    { id: 4, tag: "E", top: "94px", y: "115px" },
+    { id: 5, tag: "F", top: "153px", y: "105px" },
   ];
 
   const styles = [
@@ -36,11 +34,12 @@ function SamplePlate8Circle({ states, onClick }: Props) {
       <div
         style={{
           position: "relative",
-          width: "160px",
-          height: "316px",
+          width: "372px",
+          height: "314px",
           margin: "0px",
-          left: "62px",
-          top: "284px",
+
+          left: "41px",
+          top: "285px",
         }}
       >
         {slots.map((slot) => (
@@ -50,8 +49,9 @@ function SamplePlate8Circle({ states, onClick }: Props) {
               position: "absolute",
               left: slot.y,
               top: slot.top,
-              width: "48px",
-              height: "48px",
+              width: "50px",
+              height: "50px",
+              borderRadius: "25px",
               backgroundColor: styles[states[slot.id]],
               zIndex: "1",
             }}
@@ -64,8 +64,9 @@ function SamplePlate8Circle({ states, onClick }: Props) {
               position: "absolute",
               left: slot.y,
               top: slot.top,
-              width: "48px",
-              height: "48px",
+              width: "50px",
+              height: "50px",
+              borderRadius: "25px",
               backgroundColor: "rgba(0, 0, 0, 0)",
               zIndex: "3",
               cursor: "pointer",
@@ -73,8 +74,9 @@ function SamplePlate8Circle({ states, onClick }: Props) {
             onClick={() => handleClick(slot.id)}
           />
         ))}
+
         <img
-          src={samplePlate8}
+          src={samplePlate6}
           style={{
             position: "absolute",
             left: "0px",
@@ -88,4 +90,4 @@ function SamplePlate8Circle({ states, onClick }: Props) {
   );
 }
 
-export default SamplePlate8Circle;
+export default SamplePlate6CircleGas;

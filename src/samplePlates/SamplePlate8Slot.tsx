@@ -44,7 +44,9 @@ function SamplePlate8Slot({ states: state, onClick }: Props) {
           position: "relative",
           width: "160px",
           height: "316px",
-          margin: "4px",
+          margin: "0px",
+          left: "62px",
+          top: "284px",
         }}
       >
         {slots.map((slot) => (

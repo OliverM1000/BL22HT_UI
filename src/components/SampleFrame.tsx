@@ -40,11 +40,12 @@ function SampleFrame({ code, plateL, plateR }: Props) {
             />
           </div>
         </div>
+
         <div
           style={{
             position: "absolute",
-            left: "58px",
-            top: "280px",
+            left: "0px",
+            top: "0px",
           }}
         >
           {plateL}
@@ -52,8 +53,8 @@ function SampleFrame({ code, plateL, plateR }: Props) {
         <div
           style={{
             position: "absolute",
-            left: "230px",
-            top: "280px",
+            left: "172px",
+            top: "0px",
           }}
         >
           {plateR}
