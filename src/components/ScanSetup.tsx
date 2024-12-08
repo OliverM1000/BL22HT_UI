@@ -166,7 +166,7 @@ function ScanSetup({ onSubmit }: Props) {
                       checked={field.value == "FY"}
                       onChange={() => field.onChange("FY")}
                     />
-                    <label className="form-check-label">FY</label>
+                    <label className="form-check-label">FY - PIPS</label>
                   </div>
                 </div>
               </div>
