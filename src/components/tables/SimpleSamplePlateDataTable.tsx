@@ -33,6 +33,7 @@ function SimpleSamplePlateDataTable({
               <th>Element</th>
               <th>Edge</th>
               <th>Range</th>
+              <th>Setup</th>
               <th>Sweeps</th>
               {showDelete && <th>Delete</th>}
             </tr>
@@ -53,6 +54,7 @@ function SimpleSamplePlateDataTable({
                       <td>{scan.element}</td>
                       <td>{scan.edge}</td>
                       <td>{scan.range}</td>
+                      <td>{scan.setup == "FY" ? "FY" : "TRANS"}</td>
                       <td>{scan.sweeps}</td>
                       {showDelete && (
                         <td>
