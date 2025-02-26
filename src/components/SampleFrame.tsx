@@ -32,7 +32,7 @@ function SampleFrame({ code, plateL, plateR }: Props) {
         >
           <div style={{ display: "flex", justifyContent: "center" }}>
             <Barcode
-              value={code}
+              value={code == "" ? "AAAA-AAAA" : code}
               height={50}
               width={2}
               background="#e6e6e6"

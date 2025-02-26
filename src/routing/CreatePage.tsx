@@ -290,6 +290,9 @@ function CreatePage() {
   const AddFrame = (data: SampleFrameFormData) => {
     console.log(data);
 
+    // ToDo: DISPLAY ERROR MESSAGE !!!!
+    //VerifyTagIsUnique(data.tag);
+
     apiClient
       .post(
         "/create/frame",
@@ -302,6 +305,24 @@ function CreatePage() {
         setDisableFrameSetup(true);
       })
       .catch((error) => console.log("ERROR", error.response.data));
+  };
+
+  const VerifyTagIsUnique = (tag: string) => {
+    apiClient
+      .get<{ tag: string; isUnique: boolean }>(
+        `/sampleFrames/isUnique/${tag}`,
+        {
+          headers: { "x-auth-token": localStorage.getItem("x-auth-token") },
+        }
+      )
+      .then((res) => {
+        console.log(res.data);
+        return res.data.isUnique;
+      })
+      .catch((error) => {
+        console.log(error);
+        return false; // as default
+      });
   };
 
   const AddSample = (data: SampleSetupData) => {
@@ -486,8 +507,8 @@ function CreatePage() {
             >
               {disableFrameSetup && <Overlay />}
               <SampleFrameSetup
-                tag={frameData.tag}
                 data={{
+                  tag: frameData.tag,
                   samplePlateTypeL: frameData.samplePlateL
                     ? frameData.samplePlateL.type
                     : 0,
@@ -496,7 +517,14 @@ function CreatePage() {
                     : 0,
                   description: frameData.description,
                 }}
+                setTag={(tag) => {
+                  setFrameData({
+                    ...frameData,
+                    tag: tag.length > 9 ? tag.substring(0, 9) : tag,
+                  });
+                }}
                 setTypeL={(type) => {
+                  console.log(type);
                   setFrameData({
                     ...frameData,
                     samplePlateL: { ...frameData.samplePlateL, type: type },
