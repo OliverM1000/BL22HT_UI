@@ -287,11 +287,18 @@ function CreatePage() {
     });
   };
 
-  const AddFrame = (data: SampleFrameFormData) => {
+  const AddFrame = async (data: SampleFrameFormData) => {
     console.log(data);
 
     // ToDo: DISPLAY ERROR MESSAGE !!!!
-    //VerifyTagIsUnique(data.tag);
+
+    const res = await apiClient.get<{ tag: string; isUnique: boolean }>(
+      `/sampleFrames/isUnique/${frameData.tag}`,
+      {
+        headers: { "x-auth-token": localStorage.getItem("x-auth-token") },
+      }
+    );
+    if (!res.data.isUnique) return;
 
     apiClient
       .post(
@@ -305,24 +312,6 @@ function CreatePage() {
         setDisableFrameSetup(true);
       })
       .catch((error) => console.log("ERROR", error.response.data));
-  };
-
-  const VerifyTagIsUnique = (tag: string) => {
-    apiClient
-      .get<{ tag: string; isUnique: boolean }>(
-        `/sampleFrames/isUnique/${tag}`,
-        {
-          headers: { "x-auth-token": localStorage.getItem("x-auth-token") },
-        }
-      )
-      .then((res) => {
-        console.log(res.data);
-        return res.data.isUnique;
-      })
-      .catch((error) => {
-        console.log(error);
-        return false; // as default
-      });
   };
 
   const AddSample = (data: SampleSetupData) => {
